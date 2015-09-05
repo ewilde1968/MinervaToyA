@@ -1,0 +1,20 @@
+body {
+    font: 14px Cronos Pro, sans-serif;
+    margin:0;
+    padding:0;
+}
+
+.notShown {
+	hidden:true;
+    display:none;
+}
+
+#content {
+    position:fixed;
+    left:25%;
+    top:0px;
+    width:73%;
+    height:95%;
+    margin:1%;
+    overflow-y:scroll;
+}

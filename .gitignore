@@ -42,5 +42,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Directories needed for development framework
+# Directories and files needed for development framework
 node_modules
+dev
