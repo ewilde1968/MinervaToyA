@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  - var borrowDescriptionsA = ['Available', 'Checked Out', 'Unavailable', 'Activation Required'];
+
+  p #{user.first} #{user.last}
+  p #{user.email}
+  if user.history
+    .borrowedList
+      each item in user.history
+        if item.book && !item.returned
+          .borrowedItem
+            p item.book.title item.borrowed
+            p.due Due item.dueDate
+    .historyList
+      each item in user.history
+        if item.book && item.returned
+          .returnedItem
+            p item.book.title item.borrowed item.returned
+
+  script.
+    $(document).ready(function () {
+    });

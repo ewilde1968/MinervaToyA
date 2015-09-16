@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  p Create Book
+  a(href="/")
+    button Cancel
+  form( action="/item/new", method="POST")
+    fieldset
+      p
+        label(for="title") Title
+        input( name="title", type="text", required="required", size="22", placeholder="Title")
+      if err
+        p#errorTitle(class="errorString") Invalid title
+      p
+        label(for="author") Author
+        input( name="author", type="text", size="22", placeholder="author")
+      p
+        button Submit
+
+  script.
+    $(document).ready(function () {
+        $('form').submit(function () {
+            // validate form
+            // nothing to do right now
+
+            return good;
+        });
+    });

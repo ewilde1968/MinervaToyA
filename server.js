@@ -21,8 +21,8 @@ var express = require('express'),  // npm install express
     util = require('util'),
     app = express(),
     routes = require('./routes'),
-//  user = require('./routes/user'),
-//  book = require('./routes/book'),
+    user = require('./routes/user'),
+    item = require('./routes/item'),
     database = require('./model/database'),
     dn = __dirname,
     logRequest = function (req, res, next) {
@@ -57,15 +57,17 @@ if ('development' === app.get('env')) {
 
 app.get('/', routes.index);
 app.post('/', routes.signin);
-/*app.get('/user/new', user.newUser);
+app.get('/user/new', user.newUser);
 app.post('/user/new', user.createUser);
+//app.get('/logout', user.logout);
+//app.post('/logout', user.logout);
 app.get('/user/:userid', user.ensureSignedIn, user.home);
 app.post('/user/:userid', user.ensureSignedIn, user.update);
-app.get('/user/:userid/book/new', user.ensureSignedIn, book.newBook);
-app.post('/user/:userid/book/new', user.ensureSignedIn, book.createBook);
-app.get('/user/:userid/book/:bookid', user.ensureSignedIn, book.home);
-app.post('/user/:userid/book/:bookid', user.ensureSignedIn, book.update);
-*/
+app.get('/item', user.ensureSignedIn, item.newBook);
+app.post('/item', user.ensureSignedIn, item.createBook);
+app.get('/item/:itemid', user.ensureSignedIn, item.action);
+app.post('/item/:itemid', user.ensureSignedIn, item.update);
+
 // setup DB
 app.database = database('minerva').initialize();
 

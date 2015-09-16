@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  p Sign Up
+  a(href="/")
+    button Cancel
+  form( action="/user/new", method="POST")
+    fieldset
+      p
+        label(for="username") Email
+        input( name="username", type="email", required="required", size="22", placeholder="username@domain.com")
+      if err
+        p#errorP(class="errorString") Invalid user name
+      p Password is optional
+        label(for="password") Password
+        input( name="password", type="password", size="22", placeholder="password")
+      p
+        label(for="verifyPassword") Verify Password
+        input( name="verifyPassword", type="password", size="22", placeholder="password")
+      p
+        button Submit
+
+  script.
+    $(document).ready(function () {
+        $('form').submit(function () {
+            // validate form
+            var good = true,
+                obj = $('input[name="password"]'),
+                vObj = $('input[name="verifyPassword"]');
+            if (obj.val() !== vObj.val()) {
+            	good = false;
+            	obj.addClass('inputError');
+            	vObj.addClass('inputError');
+           	} else {
+            	obj.removeClass('inputError');
+            	vObj.removeClass('inputError');
+           	}
+
+            return good;
+        });
+    });
